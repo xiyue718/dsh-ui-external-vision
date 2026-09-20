@@ -70,4 +70,14 @@ fi
 
 echo "=== Compiling src → lib ==="
 "$TSC" -p tsconfig.json
+
+# Host 半再打包成自包含的 lib/index.js：官方渠道安装的插件包只能靠自己解析
+# 运行期依赖，宿主不会从 profile 里找它们。
+echo "=== Bundling self-contained host half ==="
+TSDOWN="$CHECKOUT/node_modules/.bin/tsdown"
+if [ ! -f "$TSDOWN" ] && [ ! -f "$TSDOWN.cmd" ]; then
+  echo "build: tsdown not found at $TSDOWN" >&2
+  exit 1
+fi
+"$TSDOWN" --config tsdown.host.config.ts
 echo "=== Build complete ==="

@@ -7,7 +7,8 @@
   "main": "./lib/index.js",
   "types": "./lib/types/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "cordis.patch.yml"
   ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
@@ -27,7 +28,8 @@
   "scripts": {
     "build": "bash scripts/build.sh",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "build:client": "tsdown"
+    "build:client": "tsdown",
+    "build:host": "tsdown --config tsdown.host.config.ts"
   },
   "exports": {
     ".": {
@@ -41,6 +43,9 @@
     "./package.json": "./package.json"
   },
   "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "inject": [
         "@deepseek-ai/dsh-client-runtime",

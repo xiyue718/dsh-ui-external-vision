@@ -1,0 +1,6 @@
+# @dsh-external/ui-external-vision 的 bundle 层：官方装配时插入 host 插件行。
+# client 半由该行的包名扫描 dsh.client 声明装载，无需单独声明。
+- insert:
+    - id: dsh-external-ui-external-vision
+      name: '@dsh-external/ui-external-vision'
+      config: {}
